@@ -10,7 +10,7 @@ const bookReducer = (state = booksState, action) => {
         case UPDATEBOOK:
             return console.log("UPDATEBOOK");
         case DELETEBOOK:
-            return console.log("DELETEBOOK");
+            return state.filter((book) => book.id !== action.payload);
         default:
             return state;
     }
