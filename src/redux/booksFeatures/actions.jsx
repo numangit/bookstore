@@ -1,4 +1,4 @@
-import { FETCHBOOKS, ADDBOOK, ALLBOOK, FEATUREDBOOK, SEARCHBOOK, UPDATEBOOK, DELETEBOOK } from "./actions";
+import { FETCHBOOKS, ADDBOOK, UPDATEBOOK, DELETEBOOK } from "./actionTypes";
 
 export const fetchBooks = (books) => {
     return {
@@ -11,25 +11,6 @@ export const addBook = (bookData) => {
     return {
         type: ADDBOOK,
         payload: bookData
-    }
-}
-
-export const allBook = () => {
-    return {
-        type: ALLBOOK
-    }
-}
-
-export const featuredBook = () => {
-    return {
-        type: FEATUREDBOOK
-    }
-}
-
-export const searchBook = (bookName) => {
-    return {
-        type: SEARCHBOOK,
-        payload: bookName
     }
 }
 

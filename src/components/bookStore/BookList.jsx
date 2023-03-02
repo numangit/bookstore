@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+// import { allBook, featuredBook } from '../../redux/booksFeatures/actions';
 import BookCard from "./BookCard";
 
 const BookList = () => {
 
     const booksState = useSelector((state) => state);
+    const dispatch = useDispatch();
+    console.log(booksState);
 
     const [active, setActive] = useState("All");
 
@@ -12,9 +15,11 @@ const BookList = () => {
     const filterHandler = (selectedFiler) => {
         if (selectedFiler === "Featured") {
             setActive("Featured");
+            // dispatch(featuredBook());
         } else {
             setActive("All");
-        }
+            // dispatch(allBook());
+        };
     };
 
     return (
