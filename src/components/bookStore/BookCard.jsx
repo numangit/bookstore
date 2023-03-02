@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from '../../redux/booksFeatures/actions';
+import { editToggle } from '../../redux/filterFeature/actions';
 
 const BookCard = ({ book }) => {
 
-    const { name, author, thumbnail, price, rating, featured, id } = book;
+    // const { name, author, thumbnail, price, rating, featured, id } = book;
     const dispatch = useDispatch();
 
     //function to delete book
@@ -12,24 +13,31 @@ const BookCard = ({ book }) => {
         dispatch(deleteBook(id));
     };
 
+    //function to toggle edit
+    const editHandler = (data) => {
+        dispatch(editToggle(true, data));
+    }
+
     return (
         <div className="book-card">
             <img className="h-[240px] w-[170px] object-cover lws-bookThumbnail"
-                src={thumbnail} alt="book" />
+                src={book.thumbnail} alt="book" />
             <div className="flex-1 h-full pr-2 pt-2 flex flex-col">
                 <div className="flex items-center justify-between">
                     {
-                        featured && <span className="badge-success lws-Badge">featured</span>
+                        book.featured && <span className="badge-success lws-Badge">featured</span>
                     }
                     <div className="text-gray-500 space-x-2">
-                        <button className="lws-edit">
+                        <button
+                            onClick={() => editHandler(book)}
+                            className="lws-edit">
                             <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                     d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                             </svg>
                         </button>
                         <button
-                            onClick={() => deleteHandler(id)}
+                            onClick={() => deleteHandler(book.id)}
                             className="lws-delete">
                             <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round"
@@ -40,8 +48,8 @@ const BookCard = ({ book }) => {
                 </div>
 
                 <div className="space-y-2 mt-4 h-full">
-                    <h4 className="lws-bookName">{name}</h4>
-                    <p className="lws-author">{author}</p>
+                    <h4 className="lws-bookName">{book.name}</h4>
+                    <p className="lws-author">{book.author}</p>
                     <div className="lws-stars">
                         <svg viewBox="0 0 20 20" fill="currentColor" className="lws-star">
                             <path fillRule="evenodd"
@@ -59,7 +67,7 @@ const BookCard = ({ book }) => {
                                 clipRule="evenodd" />
                         </svg>
                     </div>
-                    <p className="lws-price">BDT {price}</p>
+                    <p className="lws-price">BDT {book.price}</p>
                 </div>
             </div>
         </div>

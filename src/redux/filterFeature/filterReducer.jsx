@@ -1,5 +1,5 @@
 import { filterState } from "./initialState";
-import { SETSTATUS, SEARCHBOOK } from './actionType';
+import { SETSTATUS, SEARCHBOOK, EDITTOGGLE } from './actionType';
 
 const filterReducer = (state = filterState, action) => {
     switch (action.type) {
@@ -7,7 +7,17 @@ const filterReducer = (state = filterState, action) => {
             return {
                 ...state,
                 featured: action.payload
-            }
+            };
+
+        case EDITTOGGLE:
+            return {
+                ...state,
+                editMode: {
+                    ...state.editMode,
+                    status: action.payload.status,
+                    bookData: action.payload.bookData
+                }
+            };
 
         case SEARCHBOOK:
             return {
