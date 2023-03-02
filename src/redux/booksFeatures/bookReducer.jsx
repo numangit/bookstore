@@ -9,7 +9,7 @@ const generateId = (arrayData) => {
 const bookReducer = (state = booksState, action) => {
     switch (action.type) {
         case FETCHBOOKS:
-            return console.log("FETCHBOOKS");
+            return action.payload;
 
         case ADDBOOK:
             return [

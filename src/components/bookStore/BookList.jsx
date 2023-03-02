@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import fetchBooks from '../../redux/booksFeatures/thunk/fetchBooks';
 import { currentStatus } from '../../redux/filterFeature/actions';
 import BookCard from "./BookCard";
 
@@ -8,6 +9,11 @@ const BookList = () => {
     const booksState = useSelector((state) => state.books);
     const filterState = useSelector((state) => state.filter);
     const dispatch = useDispatch();
+
+    //fetching books
+    useEffect(() => {
+        dispatch(fetchBooks)
+    }, [dispatch]);
 
     //filter handler function
     const filterHandler = (selectedFiler) => {

@@ -9,7 +9,6 @@ const Navbar = () => {
     const [search, setSearch] = useState();
 
     const searchHandler = (value) => {
-        console.log(value);
         setSearch(value);
         dispatch(searchBook(value));
     };
