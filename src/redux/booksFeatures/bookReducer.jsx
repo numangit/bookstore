@@ -1,12 +1,14 @@
 import { booksState } from "./initialState";
-import { FETCHBOOKS, ADDBOOK, FEATUREDBOOK, SEARCHBOOK, UPDATEBOOK, DELETEBOOK } from "./actionTypes";
+import { FETCHBOOKS, ADDBOOK, ALLBOOK, FEATUREDBOOK, SEARCHBOOK, UPDATEBOOK, DELETEBOOK } from "./actionTypes";
 
-export const bookReducer = (state = booksState, action) => {
+const bookReducer = (state = booksState, action) => {
     switch (action.type) {
         case FETCHBOOKS:
             return console.log("FETCHBOOKS");
         case ADDBOOK:
             return console.log("ADDBOOK");
+        case ALLBOOK:
+            return console.log("ALLBOOK");
         case FEATUREDBOOK:
             return console.log("FEATUREDBOOK");
         case SEARCHBOOK:
@@ -18,4 +20,6 @@ export const bookReducer = (state = booksState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default bookReducer;
