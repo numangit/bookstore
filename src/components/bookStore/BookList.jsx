@@ -24,6 +24,20 @@ const BookList = () => {
         }
     }
 
+    //filter books data based on search
+    const filterBySearch = (book) => {
+        const { searchedBook } = filterState
+        const bookLowercase = book.name.toLowerCase();
+
+        if (book.name.toLowerCase().indexOf(searchedBook.toLowerCase()) === 0) {
+            return true;
+        } else if (searchedBook === "") {
+            return book;
+        } else {
+            return false;
+        }
+    };
+
     return (
         <div className="order-2 xl:-order-1">
 
@@ -51,7 +65,7 @@ const BookList = () => {
 
             <div className="lws-bookContainer">
                 {
-                    booksState.filter(filterByStatus).map((book) => <BookCard key={book.id} book={book} />)
+                    booksState.filter(filterByStatus).filter(filterBySearch).map((book) => <BookCard key={book.id} book={book} />)
                 }
             </div>
 
