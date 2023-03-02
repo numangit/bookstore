@@ -25,7 +25,9 @@ const BookCard = ({ book }) => {
             <div className="flex-1 h-full pr-2 pt-2 flex flex-col">
                 <div className="flex items-center justify-between">
                     {
-                        book.featured && <span className="badge-success lws-Badge">featured</span>
+                        book.featured
+                            ? <span className="badge-success lws-Badge">featured</span>
+                            : <span></span>
                     }
                     <div className="text-gray-500 space-x-2">
                         <button

@@ -1,20 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { editToggle } from '../../redux/filterFeature/actions';
 
 const AddBook = () => {
 
     const { status, bookData } = useSelector((state) => state.filter.editMode);
-
-    console.log(status, bookData);
     const dispatch = useDispatch();
 
-
+    //function to handle form
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(editToggle(false, ''));
+    }
 
     return (
         <div>
             <div className="p-4 overflow-hidden bg-white shadow-cardShadow rounded-md">
                 <h4 className="mb-8 text-xl font-bold text-center">Add New Book</h4>
-                <form className="book-form">
+                <form onSubmit={submitHandler} className="book-form">
                     <div className="space-y-2">
                         <label htmlFor="name">Book Name</label>
                         <input
