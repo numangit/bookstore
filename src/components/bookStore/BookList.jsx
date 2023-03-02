@@ -26,8 +26,7 @@ const BookList = () => {
 
     //filter books data based on search
     const filterBySearch = (book) => {
-        const { searchedBook } = filterState
-        const bookLowercase = book.name.toLowerCase();
+        const { searchedBook } = filterState;
 
         if (book.name.toLowerCase().indexOf(searchedBook.toLowerCase()) === 0) {
             return true;
