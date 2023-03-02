@@ -5,7 +5,8 @@ import BookCard from "./BookCard";
 
 const BookList = () => {
 
-    const booksState = useSelector((state) => state);
+    const booksState = useSelector((state) => state.books);
+    const filterState = useSelector((state) => state.filter);
     const dispatch = useDispatch();
     console.log(booksState);
 
@@ -30,7 +31,7 @@ const BookList = () => {
 
                 <div className="flex items-center space-x-4">
                     <button
-                        className={`filter-btn ${active === "All" && "active-filter"}`}
+                        className={`filter-btn ${filterState.currentStatus === "All" && "active-filter"}`}
                         id="lws-filterAll"
                         onClick={() => filterHandler("All")}
                     >
@@ -38,7 +39,7 @@ const BookList = () => {
                     </button>
 
                     <button
-                        className={`filter-btn ${active === "Featured" && "active-filter"}`}
+                        className={`filter-btn ${filterState.currentStatus === "Featured" && "active-filter"}`}
                         id="lws-filterFeatured"
                         onClick={() => filterHandler("Featured")}
                     >
