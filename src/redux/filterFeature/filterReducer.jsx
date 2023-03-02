@@ -6,7 +6,7 @@ const filterReducer = (state = filterState, action) => {
         case SETSTATUS:
             return {
                 ...state,
-                currentStatus: action.payload
+                featured: action.payload
             }
 
         case SEARCHBOOK:

@@ -14,6 +14,16 @@ const BookList = () => {
         dispatch(currentStatus(selectedFiler));
     };
 
+    //filter books data based on status
+    const filterByStatus = (book) => {
+        const { featured } = filterState
+        if (featured) {
+            return book.featured;
+        } else {
+            return book;
+        }
+    }
+
     return (
         <div className="order-2 xl:-order-1">
 
@@ -22,17 +32,17 @@ const BookList = () => {
 
                 <div className="flex items-center space-x-4">
                     <button
-                        className={`filter-btn ${filterState.currentStatus === "All" && "active-filter"}`}
+                        className={`filter-btn ${filterState.featured === false && "active-filter"}`}
                         id="lws-filterAll"
-                        onClick={() => filterHandler("All")}
+                        onClick={() => filterHandler(false)}
                     >
                         All
                     </button>
 
                     <button
-                        className={`filter-btn ${filterState.currentStatus === "Featured" && "active-filter"}`}
+                        className={`filter-btn ${filterState.featured === true && "active-filter"}`}
                         id="lws-filterFeatured"
-                        onClick={() => filterHandler("Featured")}
+                        onClick={() => filterHandler(true)}
                     >
                         Featured
                     </button>
@@ -41,7 +51,7 @@ const BookList = () => {
 
             <div className="lws-bookContainer">
                 {
-                    booksState.map((book) => <BookCard key={book.id} book={book} />)
+                    booksState.filter(filterByStatus).map((book) => <BookCard key={book.id} book={book} />)
                 }
             </div>
 

@@ -1,4 +1,4 @@
 export const filterState = {
-    currentStatus: "All",
+    featured: false,
     searchedBook: ""
 }
