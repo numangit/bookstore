@@ -18,14 +18,14 @@ const BookList = () => {
     };
 
     return (
-        <div class="order-2 xl:-order-1">
+        <div className="order-2 xl:-order-1">
 
-            <div class="flex items-center justify-between mb-12">
-                <h4 class="mt-2 text-xl font-bold">Book List</h4>
+            <div className="flex items-center justify-between mb-12">
+                <h4 className="mt-2 text-xl font-bold">Book List</h4>
 
-                <div class="flex items-center space-x-4">
+                <div className="flex items-center space-x-4">
                     <button
-                        class={`filter-btn ${active === "All" && "active-filter"}`}
+                        className={`filter-btn ${active === "All" && "active-filter"}`}
                         id="lws-filterAll"
                         onClick={() => filterHandler("All")}
                     >
@@ -33,7 +33,7 @@ const BookList = () => {
                     </button>
 
                     <button
-                        class={`filter-btn ${active === "Featured" && "active-filter"}`}
+                        className={`filter-btn ${active === "Featured" && "active-filter"}`}
                         id="lws-filterFeatured"
                         onClick={() => filterHandler("Featured")}
                     >
@@ -42,7 +42,7 @@ const BookList = () => {
                 </div>
             </div>
 
-            <div class="lws-bookContainer">
+            <div className="lws-bookContainer">
                 {
                     booksState.map((book) => <BookCard key={book.id} book={book} />)
                 }
