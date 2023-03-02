@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteBook } from '../../redux/booksFeatures/actions';
+import deleteBookThunk from '../../redux/booksFeatures/thunk/deleteBook';
 import { editToggle } from '../../redux/filterFeature/actions';
 
 const BookCard = ({ book }) => {
@@ -10,7 +10,7 @@ const BookCard = ({ book }) => {
 
     //function to delete book
     const deleteHandler = (id) => {
-        dispatch(deleteBook(id));
+        dispatch(deleteBookThunk(id));
     };
 
     //function to toggle edit
