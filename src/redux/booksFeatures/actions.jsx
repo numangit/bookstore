@@ -14,10 +14,10 @@ export const addBook = (bookData) => {
     }
 }
 
-export const updateBook = (updateData) => {
+export const updateBook = (updateData, id) => {
     return {
         type: UPDATEBOOK,
-        payload: updateData
+        payload: { updateData, id }
     }
 }
 

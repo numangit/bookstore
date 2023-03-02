@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addBook, updateBook } from '../../redux/booksFeatures/actions';
 import { editToggle } from '../../redux/filterFeature/actions';
 
 const AddBook = () => {
@@ -7,10 +8,26 @@ const AddBook = () => {
     const { status, bookData } = useSelector((state) => state.filter.editMode);
     const dispatch = useDispatch();
 
+    const [input, setInput] = useState({
+        name: '',
+        author: '',
+        thumbnail: '',
+        price: '',
+        rating: '',
+        featured: false,
+    })
+
     //function to handle form
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(editToggle(false, ''));
+
+        if (status) {
+            dispatch(updateBook(input, bookData.id))
+            dispatch(editToggle(false, ''));
+        } else {
+            dispatch(addBook(input));
+            setInput('');
+        }
     }
 
     return (
@@ -25,7 +42,8 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookname"
-                            value={status ? bookData.name : ""}
+                            value={status ? bookData.name : input.name}
+                            onChange={(e) => setInput({ ...input, name: e.target.value })}
                             name="name" />
                     </div>
 
@@ -36,7 +54,8 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookauthor"
-                            value={status ? bookData.author : ""}
+                            value={status ? bookData.author : input.author}
+                            onChange={(e) => setInput({ ...input, author: e.target.value })}
                             name="author" />
                     </div>
 
@@ -47,7 +66,8 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookthumbnail"
-                            value={status ? bookData.thumbnail : ""}
+                            value={status ? bookData.thumbnail : input.thumbnail}
+                            onChange={(e) => setInput({ ...input, thumbnail: e.target.value })}
                             name="thumbnail" />
                     </div>
 
@@ -59,7 +79,8 @@ const AddBook = () => {
                                 className="text-input"
                                 type="number"
                                 id="input-Bookprice"
-                                value={status ? bookData.price : ""}
+                                value={status ? bookData.price : input.price}
+                                onChange={(e) => setInput({ ...input, price: e.target.value })}
                                 name="price" />
                         </div>
 
@@ -70,7 +91,8 @@ const AddBook = () => {
                                 className="text-input"
                                 type="number"
                                 id="input-Bookrating"
-                                value={status ? bookData.rating : ""}
+                                value={status ? bookData.rating : input.rating}
+                                onChange={(e) => setInput({ ...input, rating: e.target.value })}
                                 name="rating"
                                 min="1"
                                 max="5" />
@@ -81,7 +103,8 @@ const AddBook = () => {
                         <input
                             id="input-Bookfeatured"
                             type="checkbox"
-                            checked={status ? bookData.featured : false}
+                            checked={status ? bookData.featured : input.featured}
+                            onChange={(e) => setInput({ ...input, featured: e.target.checked })}
                             name="featured"
                             className="w-4 h-4" />
                         <label htmlFor="featured" className="ml-2 text-sm"> This is a featured book </label>
