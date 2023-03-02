@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { allBook, featuredBook } from '../../redux/booksFeatures/actions';
+import { currentStatus } from '../../redux/filterFeature/actions';
 import BookCard from "./BookCard";
 
 const BookList = () => {
@@ -8,19 +8,10 @@ const BookList = () => {
     const booksState = useSelector((state) => state.books);
     const filterState = useSelector((state) => state.filter);
     const dispatch = useDispatch();
-    console.log(booksState);
-
-    const [active, setActive] = useState("All");
 
     //filter handler function
     const filterHandler = (selectedFiler) => {
-        if (selectedFiler === "Featured") {
-            setActive("Featured");
-            // dispatch(featuredBook());
-        } else {
-            setActive("All");
-            // dispatch(allBook());
-        };
+        dispatch(currentStatus(selectedFiler));
     };
 
     return (
