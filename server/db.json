@@ -26,6 +26,51 @@
       "rating": 4,
       "featured": true,
       "id": 4
+    },
+    {
+      "name": "mu bood",
+      "author": " uamn",
+      "thumbnail": "https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg",
+      "price": 2,
+      "rating": 3,
+      "featured": true,
+      "id": 5
+    },
+    {
+      "name": "dhd",
+      "author": "d",
+      "thumbnail": "d",
+      "price": 2,
+      "rating": 2,
+      "featured": false,
+      "id": 6
+    },
+    {
+      "name": "num",
+      "author": "nua",
+      "thumbnail": "ssk",
+      "price": 1,
+      "rating": 2,
+      "featured": true,
+      "id": 7
+    },
+    {
+      "name": "numa",
+      "author": "sjsj",
+      "thumbnail": "shsh",
+      "price": 1,
+      "rating": 2,
+      "featured": true,
+      "id": 8
+    },
+    {
+      "name": "No book",
+      "author": "me",
+      "thumbnail": "dja",
+      "price": 12,
+      "rating": 3,
+      "featured": true,
+      "id": 9
     }
   ]
 }

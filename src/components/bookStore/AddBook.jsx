@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBook, updateBook } from '../../redux/booksFeatures/actions';
+import { updateBook } from '../../redux/booksFeatures/actions';
+import addBooks from '../../redux/booksFeatures/thunk/addBook';
 import { editToggle } from '../../redux/filterFeature/actions';
 
 const AddBook = () => {
@@ -25,8 +26,15 @@ const AddBook = () => {
             dispatch(updateBook(input, bookData.id))
             dispatch(editToggle(false, ''));
         } else {
-            dispatch(addBook(input));
-            setInput('');
+            dispatch(addBooks(input));
+            setInput({
+                name: '',
+                author: '',
+                thumbnail: '',
+                price: '',
+                rating: '',
+                featured: false,
+            });
         }
     }
 
@@ -80,7 +88,7 @@ const AddBook = () => {
                                 type="number"
                                 id="input-Bookprice"
                                 value={status ? bookData.price : input.price}
-                                onChange={(e) => setInput({ ...input, price: e.target.value })}
+                                onChange={(e) => setInput({ ...input, price: parseInt(e.target.value) })}
                                 name="price" />
                         </div>
 
@@ -92,7 +100,7 @@ const AddBook = () => {
                                 type="number"
                                 id="input-Bookrating"
                                 value={status ? bookData.rating : input.rating}
-                                onChange={(e) => setInput({ ...input, rating: e.target.value })}
+                                onChange={(e) => setInput({ ...input, rating: parseInt(e.target.value) })}
                                 name="rating"
                                 min="1"
                                 max="5" />
