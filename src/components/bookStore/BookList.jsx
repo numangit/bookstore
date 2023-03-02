@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import BookCard from "./BookCard";
 
 const BookList = () => {
+
+    const booksState = useSelector((state) => state);
 
     const [active, setActive] = useState("All");
 
@@ -40,7 +43,9 @@ const BookList = () => {
             </div>
 
             <div class="lws-bookContainer">
-                <BookCard />
+                {
+                    booksState.map((book) => <BookCard key={book.id} book={book} />)
+                }
             </div>
 
         </div>

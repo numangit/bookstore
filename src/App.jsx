@@ -1,11 +1,13 @@
+import { Provider } from 'react-redux'
 import './App.css'
 import AddBook from './components/bookStore/AddBook'
 import BookList from './components/bookStore/BookList'
 import Navbar from './components/navbar/Navbar'
+import store from './redux/store';
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
 
       <Navbar />
 
@@ -18,7 +20,7 @@ function App() {
 
         </div>
       </main>
-    </div>
+    </Provider>
   )
 }
 
