@@ -1,7 +1,6 @@
 import { FETCHBOOKS, ADDBOOK, UPDATEBOOK, DELETEBOOK } from "./actionTypes";
 
 export const loadBooks = (books) => {
-    console.log(books);
     return {
         type: FETCHBOOKS,
         payload: books
