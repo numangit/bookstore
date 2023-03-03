@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import deleteBookThunk from '../../redux/booksFeatures/thunk/deleteBook';
-import updateBook from '../../redux/booksFeatures/thunk/updateBook';
 import { editToggle } from '../../redux/filterFeature/actions';
 
 const BookCard = ({ book }) => {
@@ -16,10 +15,8 @@ const BookCard = ({ book }) => {
 
     //function to toggle edit
     const editHandler = (data) => {
-        console.log(data);//not getting data
         dispatch(editToggle(true, data));
-        dispatch(updateBook(data, data.id));
-    }
+    };
 
     return (
         <div className="book-card">

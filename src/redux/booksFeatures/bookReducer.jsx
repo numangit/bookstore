@@ -25,12 +25,12 @@ const bookReducer = (state = booksState, action) => {
                 if (book.id === action.payload.id) {
                     return {
                         ...book,
-                        name: action.payload.updatedData.name,
-                        author: action.payload.updatedData.author,
-                        thumbnail: action.payload.updatedData.thumbnail,
-                        price: action.payload.updatedData.price,
-                        rating: action.payload.updatedData.rating,
-                        featured: action.payload.updatedData.featured,
+                        name: action.payload.name,
+                        author: action.payload.author,
+                        thumbnail: action.payload.thumbnail,
+                        price: action.payload.price,
+                        rating: action.payload.rating,
+                        featured: action.payload.featured,
                     };
                 } else {
                     return book;

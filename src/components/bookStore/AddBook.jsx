@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateBook } from '../../redux/booksFeatures/actions';
+import { editBook } from '../../redux/booksFeatures/actions';
 import addBooks from '../../redux/booksFeatures/thunk/addBook';
 import { editToggle } from '../../redux/filterFeature/actions';
 
@@ -9,6 +9,23 @@ const AddBook = () => {
     const { status, bookData } = useSelector((state) => state.filter.editMode);
     const dispatch = useDispatch();
 
+    //update book input
+    const [editData, setEditData] = useState({
+        name: '',
+        author: '',
+        thumbnail: '',
+        price: '',
+        rating: '',
+        featured: false,
+    });
+
+    //useEffect to set edit data in a useState
+    useEffect(() => {
+        status && setEditData(bookData);
+    }, [status])
+    console.log(editData);
+
+    //add book input
     const [input, setInput] = useState({
         name: '',
         author: '',
@@ -23,8 +40,16 @@ const AddBook = () => {
         e.preventDefault();
 
         if (status) {
-            dispatch(updateBook(input, bookData.id))
+            dispatch(editBook(editData))
             dispatch(editToggle(false, ''));
+            setEditData({
+                name: '',
+                author: '',
+                thumbnail: '',
+                price: '',
+                rating: '',
+                featured: false,
+            });
         } else {
             dispatch(addBooks(input));
             setInput({
@@ -50,8 +75,10 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookname"
-                            value={status ? bookData.name : input.name}
-                            onChange={(e) => setInput({ ...input, name: e.target.value })}
+                            value={status ? editData.name : input.name}
+                            onChange={status
+                                ? (e) => setEditData({ ...editData, name: e.target.value })
+                                : (e) => setInput({ ...input, name: e.target.value })}
                             name="name" />
                     </div>
 
@@ -62,8 +89,10 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookauthor"
-                            value={status ? bookData.author : input.author}
-                            onChange={(e) => setInput({ ...input, author: e.target.value })}
+                            value={status ? editData.author : input.author}
+                            onChange={status
+                                ? (e) => setEditData({ ...editData, author: e.target.value })
+                                : (e) => setInput({ ...input, author: e.target.value })}
                             name="author" />
                     </div>
 
@@ -74,8 +103,10 @@ const AddBook = () => {
                             className="text-input"
                             type="text"
                             id="input-Bookthumbnail"
-                            value={status ? bookData.thumbnail : input.thumbnail}
-                            onChange={(e) => setInput({ ...input, thumbnail: e.target.value })}
+                            value={status ? editData.thumbnail : input.thumbnail}
+                            onChange={status
+                                ? (e) => setEditData({ ...editData, thumbnail: e.target.value })
+                                : (e) => setInput({ ...input, thumbnail: e.target.value })}
                             name="thumbnail" />
                     </div>
 
@@ -87,8 +118,10 @@ const AddBook = () => {
                                 className="text-input"
                                 type="number"
                                 id="input-Bookprice"
-                                value={status ? bookData.price : input.price}
-                                onChange={(e) => setInput({ ...input, price: parseInt(e.target.value) })}
+                                value={status ? editData.price : input.price}
+                                onChange={status
+                                    ? (e) => setEditData({ ...editData, price: parseInt(e.target.value) })
+                                    : (e) => setInput({ ...input, price: parseInt(e.target.value) })}
                                 name="price" />
                         </div>
 
@@ -99,8 +132,10 @@ const AddBook = () => {
                                 className="text-input"
                                 type="number"
                                 id="input-Bookrating"
-                                value={status ? bookData.rating : input.rating}
-                                onChange={(e) => setInput({ ...input, rating: parseInt(e.target.value) })}
+                                value={status ? editData.rating : input.rating}
+                                onChange={status
+                                    ? (e) => setEditData({ ...editData, rating: parseInt(e.target.value) })
+                                    : (e) => setInput({ ...input, rating: parseInt(e.target.value) })}
                                 name="rating"
                                 min="1"
                                 max="5" />
@@ -111,8 +146,10 @@ const AddBook = () => {
                         <input
                             id="input-Bookfeatured"
                             type="checkbox"
-                            checked={status ? bookData.featured : input.featured}
-                            onChange={(e) => setInput({ ...input, featured: e.target.checked })}
+                            checked={status ? editData.featured : input.featured}
+                            onChange={status
+                                ? (e) => setEditData({ ...editData, featured: e.target.checked })
+                                : (e) => setInput({ ...input, featured: e.target.checked })}
                             name="featured"
                             className="w-4 h-4" />
                         <label htmlFor="featured" className="ml-2 text-sm"> This is a featured book </label>
