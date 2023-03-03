@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editBook } from '../../redux/booksFeatures/actions';
 import addBooks from '../../redux/booksFeatures/thunk/addBook';
+import updateBook from '../../redux/booksFeatures/thunk/updateBook';
 import { editToggle } from '../../redux/filterFeature/actions';
 
 const AddBook = () => {
@@ -22,8 +22,7 @@ const AddBook = () => {
     //useEffect to set edit data in a useState
     useEffect(() => {
         status && setEditData(bookData);
-    }, [status])
-    console.log(editData);
+    }, [status]);
 
     //add book input
     const [input, setInput] = useState({
@@ -38,18 +37,9 @@ const AddBook = () => {
     //function to handle form
     const submitHandler = (e) => {
         e.preventDefault();
-
         if (status) {
-            dispatch(editBook(editData))
-            dispatch(editToggle(false, ''));
-            setEditData({
-                name: '',
-                author: '',
-                thumbnail: '',
-                price: '',
-                rating: '',
-                featured: false,
-            });
+            dispatch(updateBook(editData))
+            dispatch(editToggle(false, {}));
         } else {
             dispatch(addBooks(input));
             setInput({

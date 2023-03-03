@@ -28,11 +28,11 @@
       "id": 4
     },
     {
-      "name": "mu bood",
-      "author": " uamn",
+      "name": "My Book 4th EDITION",
+      "author": "Mr.Numan",
       "thumbnail": "https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg",
-      "price": 2,
-      "rating": 3,
+      "price": 25,
+      "rating": 4,
       "featured": true,
       "id": 5
     }
