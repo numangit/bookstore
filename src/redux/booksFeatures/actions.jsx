@@ -14,7 +14,7 @@ export const addBook = (bookData) => {
     }
 }
 
-export const updateBook = (updateData, id) => {
+export const editBook = (updateData, id) => {
     return {
         type: UPDATEBOOK,
         payload: { updateData, id }
